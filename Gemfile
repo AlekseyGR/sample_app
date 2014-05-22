@@ -4,6 +4,7 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.2'
 gem 'bootstrap-sass', '2.3.2.0'
+gem 'bcrypt-ruby', '3.1.2' #Для шифрования пароля
 gem 'pg', '0.17.1'
 
 group :development, :test do
@@ -15,7 +16,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'selenium-webdriver', '2.35.1'
+  gem 'selenium-webdriver', '~> 2.35.1'
   gem 'capybara', '2.1.0'
   gem 'libnotify', '0.8.0'
 end
