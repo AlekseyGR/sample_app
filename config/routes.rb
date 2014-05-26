@@ -1,6 +1,6 @@
 SampleApp::Application.routes.draw do
-  get "users/new"
 
+  resources :users
   root 'static_pages#home'
   match '/signup',  to: 'users#new',              via: 'get'
   match '/help',    to: 'static_pages#help',      via: 'get'
@@ -18,7 +18,7 @@ SampleApp::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+
 
   # Example resource route with options:
   #   resources :products do
