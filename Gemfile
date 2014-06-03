@@ -6,6 +6,9 @@ gem 'rails', '4.0.2'
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'bcrypt-ruby', '3.1.2' #Для шифрования пароля
 gem 'pg', '0.17.1'
+gem 'faker', '1.1.2' #Для создания кучи тестовых пользователей
+gem 'will_paginate', '3.0.4' #Для разбиения списка пользователей на несколько страниц
+gem 'bootstrap-will_paginate', '0.0.9' #Для разбиения списка пользователей на несколько страниц
 
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
