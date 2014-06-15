@@ -5,9 +5,7 @@ describe "User Pages" do
   subject { page }
 
   describe "index" do
-
     let(:user) { FactoryGirl.create(:user) }
-
     before do
       sign_in user
       visit users_path
@@ -19,7 +17,6 @@ describe "User Pages" do
     describe "pagination" do
       before(:all) { 30.times {FactoryGirl.create(:user) } }
       after(:all) { User.delete_all }
-
       it { should have_selector('div.pagination') }
 
       it "should list each user" do
@@ -28,6 +25,7 @@ describe "User Pages" do
         end
       end
     end
+
     describe "delete links" do
       it { should_not have_link('delete') }
 
@@ -50,12 +48,65 @@ describe "User Pages" do
   end
 
   describe "profile page" do
-    # Replace with code to make a user variable
     let(:user) { FactoryGirl.create(:user) }
+    let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
+    let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
+
     before { visit user_path(user) }
 
     it { should have_content(user.name) }
     it { should have_title(user.name) }
+
+    describe "micropost" do
+      it { should have_content(m1.content) }
+      it { should have_content(m2.content) }
+      it { should have_content(user.microposts.count) }
+    end
+
+=begin
+    describe "delete micropost's link" do
+      before do
+        @another_user = FactoryGirl.create(:user)
+        sign_in user
+        visit user_path(@another_user.id)
+      end
+
+      it {
+        save_and_open_page
+        should_not have_link('delete')}
+    end
+=end
+
+
+    describe "micropost pagination" do
+
+      before(:all) do
+        @another_user = FactoryGirl.create(:user)
+        31.times { FactoryGirl.create(:micropost, user: @another_user, content: "Test") }
+      end
+      after(:all) do
+        user.microposts.delete_all
+        User.delete_all
+      end
+
+      before do
+        sign_in user
+        visit user_path(@another_user)
+      end
+
+      it { should have_selector('div.pagination') }
+      it { should_not have_link('delete')}
+
+=begin
+      it "should list each user's feed" do
+        #save_and_open_page
+        user.microposts.paginate(page: 1).each do |item|
+          expect(page).to have_selector("span", text: item.content)
+        end
+      end
+=end
+
+    end
   end
 
   describe "signup page" do

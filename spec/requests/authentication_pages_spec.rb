@@ -102,8 +102,23 @@ describe "Authentication" do
         end
       end
 
+<<<<<<< HEAD
       it { should_not have_link('Profile',      href: user_path(user)) }
       it { should_not have_link('Settings',     href: edit_user_path(user)) }
+=======
+      describe "in the Microposts controller" do
+
+        describe "submitting to the create action" do
+          before { post microposts_path }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+
+        describe " submitting to the destroy action" do
+          before { delete micropost_path(FactoryGirl.create(:micropost)) }
+          specify { expect(response).to redirect_to(signin_path) }
+        end
+      end
+>>>>>>> refs/remotes/origin/user-microposts
     end
 
     describe "for signed-in users" do
@@ -154,9 +169,15 @@ describe "Authentication" do
 
     describe "as admin user" do
       let(:admin) { FactoryGirl.create(:admin) }
+<<<<<<< HEAD
 
       before { sign_in admin, no_capybara: true }
 
+=======
+
+      before { sign_in admin, no_capybara: true }
+
+>>>>>>> refs/remotes/origin/user-microposts
       describe "should not be able to delete himself by submitting a DELETE request to the Users#destroy action" do
 
         before { delete user_path(admin) }
