@@ -9,6 +9,12 @@ gem 'pg', '0.17.1'
 gem 'faker', '1.1.2' #Для создания кучи тестовых пользователей
 gem 'will_paginate', '3.0.4' #Для разбиения списка пользователей на несколько страниц
 gem 'bootstrap-will_paginate', '0.0.9' #Для разбиения списка пользователей на несколько страниц
+gem 'sass-rails', '~> 4.0.2'
+gem 'uglifier', '2.1.1'
+gem 'coffee-rails', '4.0.1'
+gem 'jquery-rails', '3.0.4'
+gem 'turbolinks', '1.1.1'
+gem 'jbuilder', '1.0.2'
 
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
@@ -28,17 +34,10 @@ group :test do
   gem 'database_cleaner', github:'bmabey/database_cleaner'
 end
 
-gem 'sass-rails', '~> 4.0.2'
-gem 'uglifier', '2.1.1'
-gem 'coffee-rails', '4.0.1'
-gem 'jquery-rails', '3.0.4'
-gem 'turbolinks', '1.1.1'
-gem 'jbuilder', '1.0.2'
+group :production do
+  gem 'rails_12factor', '0.0.2'
+end
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
-end
-
-group :production do
-  gem 'rails_12factor', '0.0.2'
 end
